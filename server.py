@@ -1,3 +1,6 @@
+""" Module docstring
+"""
+
 from flask import Flask, request, render_template
 from EmotionDetection.emotion_detection import emotion_detector
 
@@ -15,6 +18,9 @@ def emo_detect():
 
     # Detect emotions for given text, return is dictionary
     response = emotion_detector(text_to_analyze)
+
+    if response['dominant_emotion'] is None:
+        return "Invalid text! Please try again!"
 
     # Create return text, dominant emotion shall be displayed in bold
     return ("For the given statement, the system response is "
